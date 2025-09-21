@@ -1,6 +1,6 @@
 {
   "name": "@noemec/react-native-qr-camera",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Ultra-light QR camera for React Native (open camera, read QR, emit value).",
   "license": "MIT",
   "main": "dist/index.js",
@@ -27,5 +27,13 @@
     "@types/react": "^19.1.13",
     "@types/react-native": "^0.72.8",
     "typescript": "^5.9.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NoEMEC/react-native-qr-camera.git"
+  },
+  "bugs": {
+    "url": "https://github.com/NoEMEC/react-native-qr-camera/issues"
+  },
+  "homepage": "https://github.com/NoEMEC/react-native-qr-camera#readme"
 }

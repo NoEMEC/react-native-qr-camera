@@ -4,7 +4,7 @@ Ultra-ligera cámara para abrir la cámara, leer un QR y emitir su valor. Sin es
 
 Estado actual
 - Android: Preview (Camera2) + flash + lectura de QR (ZXing vendoreado). Probado y funcionando.
-- iOS: Implementado (AVFoundation) pero aún no se ha probado de extremo a extremo en dispositivos reales.
+- iOS: Preview + lectura de QR (AVFoundation) + flash + teardown correcto. Probado en iPhone 13.
 
 ## Instalación
 
@@ -22,8 +22,26 @@ cd ios && pod install && cd ..
 
 4) Android: ZXing core está vendoreado como JAR en `android/libs/core-3.5.3.jar` para decodificar QR sin dependencias externas.
 
+5) iOS: añade la clave de privacidad de la cámara (NSCameraUsageDescription) en tu app.
+
+Con Xcode:
+
+- Abre `ios/<TuProyecto>.xcworkspace`.
+- Selecciona tu target de la app → pestaña Info.
+- En “Custom iOS Target Properties”, pulsa “+” y agrega:
+  - Key: NSCameraUsageDescription
+  - Type: String
+  - Value: La app necesita acceso a la cámara para escanear códigos QR.
+
+O editando el Info.plist directamente:
+
+```xml
+<key>NSCameraUsageDescription</key>
+<string>La app necesita acceso a la cámara para escanear códigos QR.</string>
+```
+
 Permisos
-- iOS: añade `NSCameraUsageDescription` en tu Info.plist.
+- iOS: añade `NSCameraUsageDescription` en Info.plist (ver pasos arriba). No se requiere micrófono.
 - Android: la app debe solicitar `android.permission.CAMERA` antes de montar el componente.
 
 ## API
@@ -49,7 +67,12 @@ Revisa `example/App.tsx` con 3 pantallas simples usando estado local.
 
 ## Notas
 - Android utiliza ZXing core vendoreado (JAR local) para mantener el módulo ligero.
-- iOS está implementado, pero aún no validado en producción. Por ahora, este paquete ha sido probado solo en Android.
+- iOS requiere iOS 12+ (según el Podspec) y ha sido probado en dispositivos reales.
+
+## Troubleshooting
+
+- Crash en iOS al abrir la cámara con “Thread 11: SIGABRT” y mensaje sobre permisos: falta la clave `NSCameraUsageDescription` en el Info.plist. Añádela siguiendo los pasos de arriba.
+- En simulador iOS la cámara puede estar limitada; prueba en dispositivo real.
 
 ## Licencia
 MIT

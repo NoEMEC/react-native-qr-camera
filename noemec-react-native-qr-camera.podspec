@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.version      = package['version']
   s.summary      = package['description']
   s.license      = { :type => package['license'] }
-  s.authors      = { "NoEMEC" => "" }
+  s.authors      = { "JoralmoPro" => "joralmopro@gmail.com" }
   s.homepage     = "https://github.com/NoEMEC/react-native-qr-camera"
   s.source       = { :git => "https://github.com/NoEMEC/react-native-qr-camera.git", :tag => s.version }
 

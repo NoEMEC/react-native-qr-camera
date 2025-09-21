@@ -69,6 +69,13 @@ Revisa `example/App.tsx` con 3 pantallas simples usando estado local.
 - Android utiliza ZXing core vendoreado (JAR local) para mantener el módulo ligero.
 - iOS requiere iOS 12+ (según el Podspec) y ha sido probado en dispositivos reales.
 
+## Licencias de terceros
+
+Este paquete incluye ZXing core (Apache License 2.0) para la decodificación de QR en Android.
+
+- ZXing core: https://github.com/zxing/zxing (Apache-2.0)
+- Consulta `THIRD_PARTY_NOTICES.md` para más detalles.
+
 ## Troubleshooting
 
 - Crash en iOS al abrir la cámara con “Thread 11: SIGABRT” y mensaje sobre permisos: falta la clave `NSCameraUsageDescription` en el Info.plist. Añádela siguiendo los pasos de arriba.

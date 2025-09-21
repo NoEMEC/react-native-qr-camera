@@ -1,0 +1,40 @@
+buildscript {
+  repositories {
+    google()
+    mavenCentral()
+  }
+  dependencies {
+    classpath("com.android.tools.build:gradle:8.4.1")
+  }
+}
+
+apply plugin: 'com.android.library'
+
+android {
+  namespace 'com.noemec.qrcamera'
+  compileSdkVersion 34
+
+  defaultConfig {
+    minSdkVersion 23
+    targetSdkVersion 34
+    consumerProguardFiles 'consumer-rules.pro'
+  }
+
+  sourceSets {
+    main {
+      java.srcDirs = ['src/main/java']
+      manifest.srcFile 'src/main/AndroidManifest.xml'
+    }
+  }
+}
+
+repositories {
+  google()
+  mavenCentral()
+  flatDir { dirs 'libs' }
+}
+
+dependencies {
+  implementation 'com.facebook.react:react-android'
+  implementation files('libs/core-3.5.3.jar')
+}

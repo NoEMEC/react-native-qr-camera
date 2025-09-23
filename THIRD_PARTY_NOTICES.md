@@ -3,9 +3,9 @@ Third-Party Notices
 This project includes the following third-party software:
 
 1) ZXing core (zxing)
-   - Repository: https://github.com/zxing/zxing
-   - License: Apache License 2.0
-   - Binary: Vendored JAR at android/libs/core-3.5.3.jar
+    - Repository: https://github.com/zxing/zxing
+    - License: Apache License 2.0
+    - Distribution: Dependencia de Maven Central (com.google.zxing:core)
 
 Apache License
 

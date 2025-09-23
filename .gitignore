@@ -21,6 +21,7 @@ android/local.properties
 android/build/
 android/app/build/
 android/captures/
+android/libs/
 *.iml
 *.apk
 *.ap_ 

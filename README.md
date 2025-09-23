@@ -3,7 +3,7 @@
 Ultra-ligera cámara para abrir la cámara, leer un QR y emitir su valor. Sin estilos, con control de flash y manejo de sesión correcto.
 
 Estado actual
-- Android: Preview (Camera2) + flash + lectura de QR (ZXing vendoreado). Probado y funcionando.
+- Android: Preview (Camera2) + flash + lectura de QR (ZXing). Probado y funcionando.
 - iOS: Preview + lectura de QR (AVFoundation) + flash + teardown correcto. Probado en iPhone 13.
 
 ## Instalación
@@ -20,7 +20,7 @@ cd ios && pod install && cd ..
 
 3) Autolinking de RN hace el resto.
 
-4) Android: ZXing core está vendoreado como JAR en `android/libs/core-3.5.3.jar` para decodificar QR sin dependencias externas.
+4) Android: Dependemos de ZXing core desde Maven (`com.google.zxing:core`) para la decodificación QR.
 
 5) iOS: añade la clave de privacidad de la cámara (NSCameraUsageDescription) en tu app.
 
@@ -66,15 +66,29 @@ Props
 Revisa `example/App.tsx` con 3 pantallas simples usando estado local.
 
 ## Notas
-- Android utiliza ZXing core vendoreado (JAR local) para mantener el módulo ligero.
+- Android utiliza ZXing core desde Maven Central. Si tu app ya trae ZXing por otra librería, Gradle unificará la versión automáticamente.
 - iOS requiere iOS 12+ (según el Podspec) y ha sido probado en dispositivos reales.
 
 ## Licencias de terceros
 
-Este paquete incluye ZXing core (Apache License 2.0) para la decodificación de QR en Android.
+Se utiliza ZXing core (Apache License 2.0) para la decodificación de QR en Android.
 
 - ZXing core: https://github.com/zxing/zxing (Apache-2.0)
 - Consulta `THIRD_PARTY_NOTICES.md` para más detalles.
+
+### Evitar conflictos de clases duplicadas (Android)
+Si ves un error `Duplicate class com.google.zxing...` es porque tu app o alguna otra librería trae otra versión de ZXing.
+
+Soluciones (elige una):
+- Forzar una única versión con dependencyResolutionManagement o constraints en tu `app/build.gradle`:
+  
+  implementation(platform("com.google.zxing:core:3.5.3"))
+  
+- O excluir la transitive dependency de ZXing de la otra librería que lo trae:
+  
+  implementation('alguna:lib:1.2.3') { exclude group: 'com.google.zxing', module: 'core' }
+  
+- O ajustar la versión que prefiera tu proyecto con `configurations.all { resolutionStrategy.force 'com.google.zxing:core:3.5.3' }`.
 
 ## Troubleshooting
 

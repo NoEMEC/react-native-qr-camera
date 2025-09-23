@@ -1,6 +1,6 @@
 {
   "name": "@noemec/react-native-qr-camera",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Ultra-light QR camera for React Native (open camera, read QR, emit value).",
   "license": "MIT",
   "main": "dist/index.js",
@@ -8,7 +8,9 @@
   "types": "dist/index.d.ts",
   "files": [
     "dist",
-    "android",
+    "android/src",
+    "android/build.gradle",
+    "android/consumer-rules.pro",
     "ios",
     "react-native.config.js",
     "noemec-react-native-qr-camera.podspec",

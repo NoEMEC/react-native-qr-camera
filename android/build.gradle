@@ -31,10 +31,17 @@ android {
 repositories {
   google()
   mavenCentral()
-  flatDir { dirs 'libs' }
 }
 
 dependencies {
   implementation 'com.facebook.react:react-android'
-  implementation files('libs/core-3.5.3.jar')
+  implementation 'com.google.zxing:core:3.5.3'
+}
+
+if (System.getenv('CI') == null) {
+  if (!rootProject.ext.has('noemecQrCameraLogged')) {
+    rootProject.ext.set('noemecQrCameraLogged', true)
+    logger.lifecycle('[noemec-react-native-qr-camera] Gracias por usar @noemec/react-native-qr-camera ❤️')
+    logger.lifecycle('[noemec-react-native-qr-camera] Repo: https://github.com/NoEMEC/react-native-qr-camera')
+  }
 }
